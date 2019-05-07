@@ -1,0 +1,57 @@
+{
+    "title": "AWS RDS DataService",
+    "description": "AWS RDS DataService provides Http Endpoint to query RDS databases.",
+    "docsUrl": "https://docs.aws.amazon.com/rds-data/",
+    "url": "https://api.apis.guru/v2/specs/amazonaws.com/rds-data/2018-08-01/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://rds-data.amazonaws.com/",
+                    "http://rds-data.amazonaws.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "hmac": {
+                "label": "Authorization (hmac)",
+                "viewClass": "TextFieldView",
+                "note": "Amazon Signature authorization v4"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ExecuteSql": {
+            "main": "./lib/actions/ExecuteSql.js",
+            "title": "Executes any SQL statement on the target database synchronously",
+            "description": "Executes any SQL statement on the target database synchronously",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ExecuteSql.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

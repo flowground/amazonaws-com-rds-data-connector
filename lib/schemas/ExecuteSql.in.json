@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Execute SQL Request",
+            "properties": {
+                "awsSecretStoreArn": {
+                    "description": "ARN of the db credentials in AWS Secret Store or the friendly secret name",
+                    "maxLength": 1024,
+                    "type": "string"
+                },
+                "database": {
+                    "description": "Target DB name",
+                    "maxLength": 64,
+                    "type": "string"
+                },
+                "dbClusterOrInstanceArn": {
+                    "description": "ARN of the target db cluster or instance",
+                    "maxLength": 1024,
+                    "type": "string"
+                },
+                "schema": {
+                    "description": "Target Schema name",
+                    "maxLength": 64,
+                    "type": "string"
+                },
+                "sqlStatements": {
+                    "description": "SQL statement(s) to be executed. Statements can be chained by using semicolons",
+                    "maxLength": 65536,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "awsSecretStoreArn",
+                "dbClusterOrInstanceArn",
+                "sqlStatements"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

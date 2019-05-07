@@ -1,0 +1,788 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        {
+            "url": "https://rds-data.amazonaws.com/"
+        },
+        {
+            "url": "http://rds-data.amazonaws.com/"
+        }
+    ],
+    "info": {
+        "contact": {
+            "email": "mike.ralphson@gmail.com",
+            "name": "Mike Ralphson",
+            "url": "https://github.com/mermade/aws2openapi",
+            "x-twitter": "PermittedSoc"
+        },
+        "description": "AWS RDS DataService provides Http Endpoint to query RDS databases.",
+        "license": {
+            "name": "Apache 2.0 License",
+            "url": "http://www.apache.org/licenses/"
+        },
+        "termsOfService": "https://aws.amazon.com/service-terms/",
+        "title": "AWS RDS DataService",
+        "version": "2018-08-01",
+        "x-apiClientRegistration": {
+            "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
+        },
+        "x-apisguru-categories": [
+            "cloud"
+        ],
+        "x-logo": {
+            "backgroundColor": "#FFFFFF",
+            "url": "https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.jpeg"
+        },
+        "x-origin": [
+            {
+                "contentType": "application/json",
+                "converter": {
+                    "url": "https://github.com/mermade/aws2openapi",
+                    "version": "1.0.0"
+                },
+                "url": "https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/rds-data-2018-08-01.normal.json",
+                "x-apisguru-direct": true
+            }
+        ],
+        "x-preferred": true,
+        "x-providerName": "amazonaws.com",
+        "x-release": "v4",
+        "x-serviceName": "rds-data"
+    },
+    "externalDocs": {
+        "description": "Amazon Web Services documentation",
+        "url": "https://docs.aws.amazon.com/rds-data/"
+    },
+    "security": [
+        {
+            "hmac": []
+        }
+    ],
+    "paths": {
+        "/ExecuteSql": {
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "Action",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "Version",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Content-Sha256",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Date",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Algorithm",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Credential",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Security-Token",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Signature",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-SignedHeaders",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "post": {
+                "description": "Executes any SQL statement on the target database synchronously",
+                "operationId": "ExecuteSql",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "480": {
+                        "description": "BadRequestException",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "481": {
+                        "description": "ForbiddenException",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "482": {
+                        "description": "InternalServerErrorException",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "483": {
+                        "description": "ServiceUnavailableError",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Execute SQL Request",
+                                "properties": {
+                                    "awsSecretStoreArn": {
+                                        "description": "ARN of the db credentials in AWS Secret Store or the friendly secret name",
+                                        "maxLength": 1024,
+                                        "type": "string"
+                                    },
+                                    "database": {
+                                        "description": "Target DB name",
+                                        "maxLength": 64,
+                                        "type": "string"
+                                    },
+                                    "dbClusterOrInstanceArn": {
+                                        "description": "ARN of the target db cluster or instance",
+                                        "maxLength": 1024,
+                                        "type": "string"
+                                    },
+                                    "schema": {
+                                        "description": "Target Schema name",
+                                        "maxLength": 64,
+                                        "type": "string"
+                                    },
+                                    "sqlStatements": {
+                                        "description": "SQL statement(s) to be executed. Statements can be chained by using semicolons",
+                                        "maxLength": 65536,
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "awsSecretStoreArn",
+                                    "dbClusterOrInstanceArn",
+                                    "sqlStatements"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Arn": {
+                "maxLength": 1024,
+                "type": "string"
+            },
+            "ArrayValues": {
+                "description": "Array value",
+                "items": {},
+                "type": "array"
+            },
+            "BadRequestException": {},
+            "Blob": {
+                "type": "string"
+            },
+            "Boolean": {
+                "type": "boolean"
+            },
+            "ColumnMetadata": {
+                "description": "Column Metadata",
+                "properties": {
+                    "arrayBaseColumnType": {
+                        "description": "Homogenous array base SQL type from java.sql.Types.",
+                        "type": "integer"
+                    },
+                    "isAutoIncrement": {
+                        "description": "Whether the designated column is automatically numbered",
+                        "type": "boolean"
+                    },
+                    "isCaseSensitive": {
+                        "description": "Whether values in the designated column's case matters",
+                        "type": "boolean"
+                    },
+                    "isCurrency": {
+                        "description": "Whether values in the designated column is a cash value",
+                        "type": "boolean"
+                    },
+                    "isSigned": {
+                        "description": "Whether values in the designated column are signed numbers",
+                        "type": "boolean"
+                    },
+                    "label": {
+                        "description": "Usually specified by the SQL AS. If not specified, return column name.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name of the column.",
+                        "type": "string"
+                    },
+                    "nullable": {
+                        "description": "Indicates the nullability of values in the designated column. One of columnNoNulls (0), columnNullable (1), columnNullableUnknown (2)",
+                        "type": "integer"
+                    },
+                    "precision": {
+                        "description": "Get the designated column's specified column size.For numeric data, this is the maximum precision.  For character data, this is the length in characters. For datetime datatypes, this is the length in characters of the String representation (assuming the maximum allowed precision of the fractional seconds component). For binary data, this is the length in bytes.  For the ROWID datatype, this is the length in bytes. 0 is returned for data types where the column size is not applicable.",
+                        "type": "integer"
+                    },
+                    "scale": {
+                        "description": "Designated column's number of digits to right of the decimal point. 0 is returned for data types where the scale is not applicable.",
+                        "type": "integer"
+                    },
+                    "schemaName": {
+                        "description": "Designated column's table's schema",
+                        "type": "string"
+                    },
+                    "tableName": {
+                        "description": "Designated column's table name",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "SQL type from java.sql.Types.",
+                        "type": "integer"
+                    },
+                    "typeName": {
+                        "description": "Database-specific type name.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ColumnMetadataList": {
+                "description": "List of Column metadata",
+                "items": {
+                    "description": "Column Metadata",
+                    "properties": {
+                        "arrayBaseColumnType": {
+                            "description": "Homogenous array base SQL type from java.sql.Types.",
+                            "type": "integer"
+                        },
+                        "isAutoIncrement": {
+                            "description": "Whether the designated column is automatically numbered",
+                            "type": "boolean"
+                        },
+                        "isCaseSensitive": {
+                            "description": "Whether values in the designated column's case matters",
+                            "type": "boolean"
+                        },
+                        "isCurrency": {
+                            "description": "Whether values in the designated column is a cash value",
+                            "type": "boolean"
+                        },
+                        "isSigned": {
+                            "description": "Whether values in the designated column are signed numbers",
+                            "type": "boolean"
+                        },
+                        "label": {
+                            "description": "Usually specified by the SQL AS. If not specified, return column name.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Name of the column.",
+                            "type": "string"
+                        },
+                        "nullable": {
+                            "description": "Indicates the nullability of values in the designated column. One of columnNoNulls (0), columnNullable (1), columnNullableUnknown (2)",
+                            "type": "integer"
+                        },
+                        "precision": {
+                            "description": "Get the designated column's specified column size.For numeric data, this is the maximum precision.  For character data, this is the length in characters. For datetime datatypes, this is the length in characters of the String representation (assuming the maximum allowed precision of the fractional seconds component). For binary data, this is the length in bytes.  For the ROWID datatype, this is the length in bytes. 0 is returned for data types where the column size is not applicable.",
+                            "type": "integer"
+                        },
+                        "scale": {
+                            "description": "Designated column's number of digits to right of the decimal point. 0 is returned for data types where the scale is not applicable.",
+                            "type": "integer"
+                        },
+                        "schemaName": {
+                            "description": "Designated column's table's schema",
+                            "type": "string"
+                        },
+                        "tableName": {
+                            "description": "Designated column's table name",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "SQL type from java.sql.Types.",
+                            "type": "integer"
+                        },
+                        "typeName": {
+                            "description": "Database-specific type name.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "DbName": {
+                "maxLength": 64,
+                "type": "string"
+            },
+            "Double": {
+                "format": "double",
+                "type": "number"
+            },
+            "ExecuteSqlRequest": {
+                "description": "Execute SQL Request",
+                "properties": {
+                    "awsSecretStoreArn": {
+                        "description": "ARN of the db credentials in AWS Secret Store or the friendly secret name",
+                        "maxLength": 1024,
+                        "type": "string"
+                    },
+                    "database": {
+                        "description": "Target DB name",
+                        "maxLength": 64,
+                        "type": "string"
+                    },
+                    "dbClusterOrInstanceArn": {
+                        "description": "ARN of the target db cluster or instance",
+                        "maxLength": 1024,
+                        "type": "string"
+                    },
+                    "schema": {
+                        "description": "Target Schema name",
+                        "maxLength": 64,
+                        "type": "string"
+                    },
+                    "sqlStatements": {
+                        "description": "SQL statement(s) to be executed. Statements can be chained by using semicolons",
+                        "maxLength": 65536,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "awsSecretStoreArn",
+                    "dbClusterOrInstanceArn",
+                    "sqlStatements"
+                ],
+                "type": "object"
+            },
+            "ExecuteSqlResponse": {
+                "description": "Execute SQL response",
+                "properties": {
+                    "sqlStatementResults": {
+                        "description": "Results returned by executing the sql statement(s)"
+                    }
+                },
+                "required": [
+                    "sqlStatementResults"
+                ],
+                "type": "object"
+            },
+            "Float": {
+                "format": "float",
+                "type": "number"
+            },
+            "ForbiddenException": {},
+            "Integer": {
+                "type": "integer"
+            },
+            "InternalServerErrorException": {},
+            "Long": {
+                "type": "integer"
+            },
+            "Record": {
+                "description": "Row or Record",
+                "properties": {
+                    "values": {
+                        "description": "Record"
+                    }
+                },
+                "type": "object"
+            },
+            "Records": {
+                "description": "List of records",
+                "items": {},
+                "type": "array"
+            },
+            "ResultFrame": {
+                "description": "Result Frame",
+                "properties": {
+                    "records": {
+                        "description": "ResultSet Metadata."
+                    },
+                    "resultSetMetadata": {
+                        "description": "ResultSet Metadata.",
+                        "properties": {
+                            "columnCount": {
+                                "description": "Number of columns",
+                                "type": "integer"
+                            },
+                            "columnMetadata": {
+                                "description": "List of columns and their types",
+                                "items": {
+                                    "description": "Column Metadata",
+                                    "properties": {
+                                        "arrayBaseColumnType": {
+                                            "description": "Homogenous array base SQL type from java.sql.Types.",
+                                            "type": "integer"
+                                        },
+                                        "isAutoIncrement": {
+                                            "description": "Whether the designated column is automatically numbered",
+                                            "type": "boolean"
+                                        },
+                                        "isCaseSensitive": {
+                                            "description": "Whether values in the designated column's case matters",
+                                            "type": "boolean"
+                                        },
+                                        "isCurrency": {
+                                            "description": "Whether values in the designated column is a cash value",
+                                            "type": "boolean"
+                                        },
+                                        "isSigned": {
+                                            "description": "Whether values in the designated column are signed numbers",
+                                            "type": "boolean"
+                                        },
+                                        "label": {
+                                            "description": "Usually specified by the SQL AS. If not specified, return column name.",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "Name of the column.",
+                                            "type": "string"
+                                        },
+                                        "nullable": {
+                                            "description": "Indicates the nullability of values in the designated column. One of columnNoNulls (0), columnNullable (1), columnNullableUnknown (2)",
+                                            "type": "integer"
+                                        },
+                                        "precision": {
+                                            "description": "Get the designated column's specified column size.For numeric data, this is the maximum precision.  For character data, this is the length in characters. For datetime datatypes, this is the length in characters of the String representation (assuming the maximum allowed precision of the fractional seconds component). For binary data, this is the length in bytes.  For the ROWID datatype, this is the length in bytes. 0 is returned for data types where the column size is not applicable.",
+                                            "type": "integer"
+                                        },
+                                        "scale": {
+                                            "description": "Designated column's number of digits to right of the decimal point. 0 is returned for data types where the scale is not applicable.",
+                                            "type": "integer"
+                                        },
+                                        "schemaName": {
+                                            "description": "Designated column's table's schema",
+                                            "type": "string"
+                                        },
+                                        "tableName": {
+                                            "description": "Designated column's table name",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "description": "SQL type from java.sql.Types.",
+                                            "type": "integer"
+                                        },
+                                        "typeName": {
+                                            "description": "Database-specific type name.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ResultSetMetadata": {
+                "description": "List of columns and their types.",
+                "properties": {
+                    "columnCount": {
+                        "description": "Number of columns",
+                        "type": "integer"
+                    },
+                    "columnMetadata": {
+                        "description": "List of columns and their types",
+                        "items": {
+                            "description": "Column Metadata",
+                            "properties": {
+                                "arrayBaseColumnType": {
+                                    "description": "Homogenous array base SQL type from java.sql.Types.",
+                                    "type": "integer"
+                                },
+                                "isAutoIncrement": {
+                                    "description": "Whether the designated column is automatically numbered",
+                                    "type": "boolean"
+                                },
+                                "isCaseSensitive": {
+                                    "description": "Whether values in the designated column's case matters",
+                                    "type": "boolean"
+                                },
+                                "isCurrency": {
+                                    "description": "Whether values in the designated column is a cash value",
+                                    "type": "boolean"
+                                },
+                                "isSigned": {
+                                    "description": "Whether values in the designated column are signed numbers",
+                                    "type": "boolean"
+                                },
+                                "label": {
+                                    "description": "Usually specified by the SQL AS. If not specified, return column name.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of the column.",
+                                    "type": "string"
+                                },
+                                "nullable": {
+                                    "description": "Indicates the nullability of values in the designated column. One of columnNoNulls (0), columnNullable (1), columnNullableUnknown (2)",
+                                    "type": "integer"
+                                },
+                                "precision": {
+                                    "description": "Get the designated column's specified column size.For numeric data, this is the maximum precision.  For character data, this is the length in characters. For datetime datatypes, this is the length in characters of the String representation (assuming the maximum allowed precision of the fractional seconds component). For binary data, this is the length in bytes.  For the ROWID datatype, this is the length in bytes. 0 is returned for data types where the column size is not applicable.",
+                                    "type": "integer"
+                                },
+                                "scale": {
+                                    "description": "Designated column's number of digits to right of the decimal point. 0 is returned for data types where the scale is not applicable.",
+                                    "type": "integer"
+                                },
+                                "schemaName": {
+                                    "description": "Designated column's table's schema",
+                                    "type": "string"
+                                },
+                                "tableName": {
+                                    "description": "Designated column's table name",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "SQL type from java.sql.Types.",
+                                    "type": "integer"
+                                },
+                                "typeName": {
+                                    "description": "Database-specific type name.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "Row": {
+                "description": "List of column values",
+                "items": {},
+                "type": "array"
+            },
+            "ServiceUnavailableError": {},
+            "SqlStatement": {
+                "maxLength": 65536,
+                "type": "string"
+            },
+            "SqlStatementResult": {
+                "description": "SQL statement execution result",
+                "properties": {
+                    "numberOfRecordsUpdated": {
+                        "description": "Number of rows updated.",
+                        "type": "integer"
+                    },
+                    "resultFrame": {
+                        "description": "ResultFrame returned by executing the sql statement"
+                    }
+                },
+                "type": "object"
+            },
+            "SqlStatementResults": {
+                "description": "SQL statement execution results",
+                "items": {},
+                "type": "array"
+            },
+            "String": {
+                "type": "string"
+            },
+            "StructValue": {
+                "description": "User Defined Type",
+                "properties": {
+                    "attributes": {
+                        "description": "Struct or UDT"
+                    }
+                },
+                "type": "object"
+            },
+            "Value": {
+                "description": "Column value",
+                "properties": {
+                    "arrayValues": {
+                        "description": "Arbitrarily nested arrays"
+                    },
+                    "bigIntValue": {
+                        "description": "Long value",
+                        "type": "integer"
+                    },
+                    "bitValue": {
+                        "description": "Bit value",
+                        "type": "boolean"
+                    },
+                    "blobValue": {
+                        "description": "Blob value",
+                        "type": "string"
+                    },
+                    "doubleValue": {
+                        "description": "Double value",
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "intValue": {
+                        "description": "Integer value",
+                        "type": "integer"
+                    },
+                    "isNull": {
+                        "description": "Is column null",
+                        "type": "boolean"
+                    },
+                    "realValue": {
+                        "description": "Float value",
+                        "format": "float",
+                        "type": "number"
+                    },
+                    "stringValue": {
+                        "description": "String value",
+                        "type": "string"
+                    },
+                    "structValue": {
+                        "description": "Struct or UDT"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "Action": {
+                "in": "query",
+                "name": "Action",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "Version": {
+                "in": "query",
+                "name": "Version",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Algorithm": {
+                "in": "header",
+                "name": "X-Amz-Algorithm",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Content-Sha256": {
+                "in": "header",
+                "name": "X-Amz-Content-Sha256",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Credential": {
+                "in": "header",
+                "name": "X-Amz-Credential",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Date": {
+                "in": "header",
+                "name": "X-Amz-Date",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Security-Token": {
+                "in": "header",
+                "name": "X-Amz-Security-Token",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Signature": {
+                "in": "header",
+                "name": "X-Amz-Signature",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-SignedHeaders": {
+                "in": "header",
+                "name": "X-Amz-SignedHeaders",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
+        "securitySchemes": {
+            "hmac": {
+                "description": "Amazon Signature authorization v4",
+                "in": "header",
+                "name": "Authorization",
+                "type": "apiKey",
+                "x-amazon-apigateway-authtype": "awsSigv4"
+            }
+        }
+    }
+}
